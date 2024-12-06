@@ -1,67 +1,55 @@
-class Articolo():
-    def __init__(self, id, nome, prezzo, quantita):
-        self.id = id
-        self.nome = nome
-        self.prezzo = prezzo
-        self.quantita = quantita
-    def __str__(self):
-        return f"Articolo: {self.id}\nNome: {self.nome}, Prezzo: €{self.prezzo}, Quantità: {self.quantita}\n"
-class Utente():
-    def __init__(self, nick_utente, nome_utente, cognome_utente, eta_utente):
-        self.nick_utente = nick_utente
-        self.nome_utente = nome_utente
-        self.cognome_utente = cognome_utente
-        self.eta_utente = eta_utente
-    def __str__(self):
-        return f"Utente: {self.nick_utente}\nNome: {self.nome_utente}, Cognome: {self.cognome_utente}, Età: {self.eta_utente}\n"
-
-
-
-class GestisciNegozio():
+class Negozio():
     def __init__(self):
+        self.nome_negozio = "Negozio PCTO"
+
+
+class Articolo():
+    def __init__(self, id_articolo=None, nome_articolo=None, prezzo_articolo=None):
         self.articoli = {}
-        self.utenti = {}
+        self.id_articolo = id_articolo
+        self.nome_articolo = nome_articolo
+        self.prezzo_articolo = prezzo_articolo
+
     def aggiungi_articolo(self):
-        nome = input("Inserisci il nome dell'articolo: ")
-        id = input("Inserisci l'id dell'articolo: ")
-        prezzo = float(input("Inserisci il prezzo dell'articolo: "))
-        quantita = input("Inserisci la quantità dell'articolo: ")
-        self.articoli[nome] = Articolo(id, nome, prezzo, quantita)
+        print("Inserisci: \n")
+        id_articolo = input("Id dell'articolo: \n")
+        nome_articolo = input("Nome dell'articolo: \n")
+        prezzo_articolo = input("Prezzo dell'articolo: \n")
+        self.articoli[nome_articolo] = Articolo(id_articolo, nome_articolo, prezzo_articolo)
+        print(f"Articolo aggiunto con successo:\n {self.articoli[nome_articolo]}")
+    def __str__(self):
+        return f"Articolo: {self.id_articolo}\n Nome: {self.nome_articolo}\n Prezzo: {self.prezzo_articolo}$\n"
     def mostra_articoli(self):
         for articolo in self.articoli:
             print(self.articoli[articolo])
+    def rimuovi_articolo(self):
+        rimuovi_articolo = input("Inserisci il nome dell'articolo da eliminare: ")
+        del self.articoli[rimuovi_articolo]
+        
+
+class Carrello():
+    def __init__(self):
+        self.carrello = {}
+
+class Utente():
+    def __init__(self, id_utente=None, nome_utente=None):
+        self.utenti = {}
+        self.id_utente = id_utente
+        self.nome_utente = nome_utente
+
     def aggiungi_utente(self):
-        nick_utente = input("Inserisci il nickname dell'utente")
-        nome_utente = input("Inserisci il nome dell'utente: ")
-        cognome_utente = input("Inserisci il cognome dell'utente: ")
-        eta = int(input("Inserisci l'età dell'utente: "))
-        self.utenti[nick_utente] = Utente(nick_utente, nome_utente, cognome_utente, eta)
+        print("Inserisci: \n")
+        id_utente = input("Id dell'utente: \n")
+        nome_utente = input("Nome dell'utente: \n")
+        self.utenti[nome_utente] = Articolo(id_utente, nome_utente)
+        print(f"Utente aggiunto con successo:\n {self.utenti[nome_utente]}")
+    def __str__(self):
+        return f"Utente: {self.id_utente}\n Nome: {self.nome_utente}\n"
     def mostra_utenti(self):
         for utente in self.utenti:
             print(self.utenti[utente])
-    def login(self, nick):
-        if nick in self.utenti:
-            return True
-
-gnegozio = GestisciNegozio()
-def gestionale():
-    while True:
-        scelta = input("Inserisci 1 se vuoi aggiungere un articolo, Inserisci 2 se vuoi visualizzare il catalogo, Inserisci 3 se vuoi visualizzare un utente, Inserisci 4 se vuoi uscire")
-        if scelta == "1":
-            gnegozio.aggiungi_articolo()
-        elif scelta == "2":
-            gnegozio.mostra_articoli()
-        elif scelta == "3":
-            gnegozio.mostra_utenti()
-        if scelta == "4":
-            break
-def pseudosito():
-    while True: 
-        scelta = input("Per iniziare ad utilizzare il sito è necessario accedere (1) o registrarsi (2)")
-        if scelta == "1":
-            scelta = input("Inserisci le credenziali")
-            if gnegozio.login(scelta) is True:
-                break
-        if scelta == "2":
-            gnegozio.aggiungi_utente()
-pseudosito()
+    def rimuovi_utente(self):
+        rimuovi_utente = input("Inserisci il nome dell'utente da eliminare: ")
+        del self.utenti[rimuovi_utente]
+articolo_classe = Articolo()
+utente_classe = Utente()
