@@ -14,5 +14,10 @@ class Prodotto():
             print(f"Nome: {self.prodotti[prodotto].nome_prodotto}\n   Quantità: {self.prodotti[prodotto].quantita_prodotto}\n   Prezzo: {self.prodotti[prodotto].prezzo_prodotto}$\n")
     def elimina_prodotto(self):
         del self.prodotti[input("Inserisci il nickname del prodotto da eliminare")]
+    def cerca_articolo_nome(self):
+        for prodotto in self.prodotti:
+            if input("Inserisci il nome del prodotto da trovare: \n") == self.prodotti[prodotto].nome_prodotto:
+                print(f"Nome: {self.prodotti[prodotto].nome_prodotto}\n   Quantità: {self.prodotti[prodotto].quantita_prodotto}\n   Prezzo: {self.prodotti[prodotto].prezzo_prodotto}$\n")
+                break
 classe_prodotto = Prodotto()
         

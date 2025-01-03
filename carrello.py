@@ -17,7 +17,6 @@ class Carrello():
                     break
                 break
             break
-
     def mostra_carrello(self):
         for prodotto in self.carrello:
             print(f"Nome: {self.carrello[prodotto].nome_prodotto}\n   Quantità: {self.carrello[prodotto].quantita_prodotto}\n   Prezzo: {self.carrello[prodotto].prezzo_prodotto}$\n")
